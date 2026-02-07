@@ -1,31 +1,71 @@
 # Items REST API
 
-A simple Spring Boot RESTful backend application that manages a collection of items using in-memory storage (ArrayList).
+A simple **Spring Boot RESTful backend application** that manages a collection of items (similar to a basic ecommerce product service).
 
-## Features
+The application stores data in-memory using an `ArrayList` and exposes HTTP endpoints to add and retrieve items.
+
+---
+
+## 🌐 Live Demo
+
+Base URL:
+
+```
+https://items-rest-api-1.onrender.com
+```
+
+---
+
+## ✨ Features
 
 * Add a new item
 * Get item by ID
 * Input validation
 * Proper HTTP status codes
-* Exception handling
+* Global exception handling
+* Cloud deployed on Render
 
 ---
 
-## Tech Stack
+## 🛠 Tech Stack
 
 * Java 21
 * Spring Boot
 * Maven
+* REST API
+* Docker
+* Render (Hosting)
+* Postman (Testing)
 
 ---
 
-## How to Run
+## 🧱 Project Architecture
 
-1. Clone repository
-2. Open in IntelliJ / VS Code
-3. Run `ItemsApiApplication.java`
-4. Server runs on:
+Layered architecture:
+
+```
+Controller → Service → Repository → Model → Exception Handler
+```
+
+| Layer      | Responsibility              |
+| ---------- | --------------------------- |
+| Controller | Handles HTTP requests       |
+| Service    | Business logic & validation |
+| Repository | In-memory data storage      |
+| Model      | Item structure              |
+| Exception  | Global error handling       |
+
+---
+
+## ▶️ Run Locally
+
+```bash
+git clone https://github.com/AshutoshPrakhar/items-rest-api
+cd items-rest-api
+mvn spring-boot:run
+```
+
+Server runs at:
 
 ```
 http://localhost:8080
@@ -33,28 +73,42 @@ http://localhost:8080
 
 ---
 
-## API Endpoints
+## 🚀 API Endpoints
 
-### Add Item
+### 1️⃣ Add Item
 
-POST `/items/addItem`
+**POST** `/items/addItem`
 
-Body:
+Request Body:
 
 ```json
 {
   "name": "Laptop",
-  "description": "Gaming laptop"
+  "description": "Gaming Laptop"
 }
 ```
 
-Response: `201 CREATED`
+Response:
+
+```json
+{
+  "id": 0,
+  "name": "Laptop",
+  "description": "Gaming Laptop"
+}
+```
 
 ---
 
-### Get Item
+### 2️⃣ Get Item By ID
 
-GET `/items/{id}`
+**GET** `/items/{id}`
+
+Example:
+
+```
+/items/1
+```
 
 Response:
 
@@ -62,28 +116,75 @@ Response:
 {
   "id": 1,
   "name": "Laptop",
-  "description": "Gaming laptop"
+  "description": "Gaming Laptop"
 }
 ```
 
 ---
 
-### Error Responses
+## ⚠️ Error Handling
 
-| Case           | Status          |
+| Scenario       | Response        |
 | -------------- | --------------- |
-| Invalid input  | 400 BAD REQUEST |
+| Empty name     | 400 BAD REQUEST |
 | Item not found | 404 NOT FOUND   |
 
----
-
-## Storage
-
-Data is stored in-memory using ArrayList.
-Restarting the server resets data.
+Handled using `@RestControllerAdvice`.
 
 ---
 
-## Author
+## 🔍 How Evaluator Can Verify Quickly
+
+Because this is a REST API backend:
+
+* **POST endpoints require Postman (or any API client)** since they need a JSON body
+* **GET endpoints can be opened directly in browser**
+
+### Step 1 — Add Item (Postman Required)
+
+POST
+
+```
+https://items-rest-api-1.onrender.com/items/addItem
+```
+
+Body → raw → JSON
+
+```json
+{
+  "name": "Phone",
+  "description": "Android phone"
+}
+```
+
+---
+
+### Step 2 — Fetch Item (Works in Browser)
+
+Open in browser:
+
+```
+https://items-rest-api-1.onrender.com/items/0
+```
+
+You will see the stored item as JSON response.
+
+---
+
+## 🗂 Storage
+
+Data is stored in-memory using `ArrayList`.
+
+⚠ Restarting the server resets all data.
+
+---
+
+## ☁️ Deployment
+
+Application deployed on **Render using Docker container**.
+
+---
+
+## 👨‍💻 Author
 
 Ashutosh Prakhar
