@@ -8,12 +8,16 @@ The application stores data in-memory using an `ArrayList` and exposes HTTP endp
 
 ## 🌐 Live Demo
 
-Base URL:
+Base URL (Backend):
 
 ```
 https://items-rest-api-1.onrender.com
 ```
+Live (Frontend + Backend) :
 
+```
+https://comfy-raindrop-4dc968.netlify.app/
+```
 ---
 
 ## ✨ Features
