@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/items")
+@CrossOrigin(origins = "*")
 public class ItemController {
     private final ItemService itemService;
     public ItemController(ItemService itemService){
@@ -24,3 +25,4 @@ public class ItemController {
         return ResponseEntity.ok(itemService.getItem(id));
     }
 }
+
